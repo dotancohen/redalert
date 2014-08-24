@@ -31,6 +31,7 @@ def main():
             data = predata['data']
 
             if len(data)==0:
+                last_data = ''
                 continue
 
             affected_areas[:] = []
