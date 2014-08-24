@@ -1,4 +1,4 @@
 redalert
 ========
 
-Pyton application for getting Red Alert messages quickly.
+Python application for getting Red Alert messages quickly.
