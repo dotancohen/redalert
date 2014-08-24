@@ -22,7 +22,6 @@ def main():
         current_time = datetime.datetime.now().strftime('%H:%M:%S') + ' '
         try:
             response = urllib.request.urlopen(url, timeout=1).read()
-            #response_decoded = response.decode('utf-16le')
 
             # 65279 is the zero-width no-break space, also used
             # as and more commonly known as the BOM!
@@ -36,18 +35,16 @@ def main():
 
             affected_areas[:] = []
             for d in data:
-                #affected_area = d.split()[-1:]
                 affected_area = int(d.split()[-1:][0])
-                print(current_time + 'Affected area: ' + str(type(affected_area)) + str(affected_area))
                 affected_areas.append(affected_area)
+                #print(current_time + 'Affected area: ' + str(type(affected_area)) + str(affected_area))
 
             for ia in interested_areas:
                 if ia in affected_areas:
                     os.system('beep')
-                    print('beep!')
                     if data!=last_data:
                         last_data = data
-                        print( current_time + str(data))
+                        print(current_time + str(data))
                     continue
 
             if data!=last_data:
@@ -59,7 +56,7 @@ def main():
         except timeout as e:
             print( current_time + 'Timeout B, probably not a big deal.')
         except Exception as e:
-            print( current_time + ' Exception: ' + str(e))
+            print( current_time + 'Exception: ' + str(e))
 
         time.sleep(1)
 
@@ -68,4 +65,4 @@ def main():
 
 
 if __name__ == '__main__':
-    main() 
+    main()
