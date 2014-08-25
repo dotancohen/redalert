@@ -57,12 +57,11 @@ def main():
 
             if data!=last_data:
                 last_data = data
-                print( current_time + 'Different area: ' + str(data))
+                #print( current_time + 'Different area: ' + str(data))
 
-        except URLError as e:
-            print( current_time + 'Timeout A, probably not a big deal.')
-        except timeout as e:
-            print( current_time + 'Timeout B, probably not a big deal.')
+        except (URLError, timeout) as e:
+            #print( current_time + 'Timeout, probably not a big deal.')
+            pass
         except Exception as e:
             print( current_time + 'Exception: ' + str(e))
 
