@@ -10,6 +10,10 @@ import urllib.request
 from socket import timeout
 from urllib.error import URLError
 
+"""
+13:38:07 Exception: invalid literal for int() with base 10: 'לקיה'
+"""
+
 
 def main():
 
@@ -36,9 +40,12 @@ def main():
 
             affected_areas[:] = []
             for d in data:
-                affected_area = int(d.split()[-1:][0])
-                affected_areas.append(affected_area)
-                #print(current_time + 'Affected area: ' + str(type(affected_area)) + str(affected_area))
+                affected_area = d.split()[-1:][0]
+                if affected_area.isdigit():
+                    affected_areas.append(int(affected_area))
+                else:
+                    print('No number for this area: ' + str(d))
+                    continue
 
             for ia in interested_areas:
                 if ia in affected_areas:
