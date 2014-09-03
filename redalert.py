@@ -1,5 +1,9 @@
 #!/usr/bin/python3
 
+"""
+13:38:07 Exception: invalid literal for int() with base 10: 'לקיה'
+"""
+
 import datetime
 import json
 import os
@@ -10,17 +14,18 @@ import urllib.request
 from socket import timeout
 from urllib.error import URLError
 
-"""
-13:38:07 Exception: invalid literal for int() with base 10: 'לקיה'
-"""
 
 
-def main():
+interesting_areas = [287, 288, 289, 291, 292, 297]
+refresh_rate = 2
+
+
+
+def main(interesting_areas, refresh_rate=1):
 
 	url = 'http://www.oref.org.il/WarningMessages/alerts.json'
 	last_data = ''
 	affected_areas = []
-	interested_areas = [287, 288, 289, 291, 292, 297]
 
 	while True:
 		current_time = datetime.datetime.now().strftime('%H:%M:%S') + ' '
@@ -47,7 +52,7 @@ def main():
 					print('No number for this area: ' + str(d))
 					continue
 
-			for ia in interested_areas:
+			for ia in interesting_areas:
 				if ia in affected_areas:
 					os.system('beep')
 					if data!=last_data:
@@ -57,7 +62,6 @@ def main():
 
 			if data!=last_data:
 				last_data = data
-				#print( current_time + 'Different area: ' + str(data))
 
 		except (URLError, timeout) as e:
 			#print( current_time + 'Timeout, probably not a big deal.')
@@ -72,4 +76,4 @@ def main():
 
 
 if __name__ == '__main__':
-	main()
+	main(interesting_areas, refresh_rate)
