@@ -43,6 +43,13 @@ def main(interesting_areas, refresh_rate=1):
 				last_data = ''
 				continue
 
+			if len(interesting_areas)==0:
+				os.system('beep')
+				if data!=last_data:
+					last_data = data
+					print(current_time + str(data))
+				continue
+
 			affected_areas[:] = []
 			for d in data:
 				affected_area = d.split()[-1:][0]
