@@ -1,9 +1,5 @@
 #!/usr/bin/python3
 
-"""
-13:38:07 Exception: invalid literal for int() with base 10: 'לקיה'
-"""
-
 import datetime
 import json
 import os
@@ -76,7 +72,7 @@ def main(interesting_areas, refresh_rate=1):
 		except Exception as e:
 			print( current_time + 'Exception: ' + str(e))
 
-		time.sleep(1)
+		time.sleep(refresh_rate)
 
 	return True
 
